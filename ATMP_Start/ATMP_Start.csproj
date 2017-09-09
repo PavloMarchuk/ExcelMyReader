@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{42BE8344-87CC-46E6-B714-B7430A7BFCCE}</ProjectGuid>
+    <ProjectGuid>{1B78BB47-BEA7-489C-B54C-940BAC8D656F}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>ExcelMyReader</RootNamespace>
-    <AssemblyName>ExcelMyReader</AssemblyName>
+    <RootNamespace>ATMP_Start</RootNamespace>
+    <AssemblyName>ATMP_Start</AssemblyName>
     <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -32,12 +32,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
     <Reference Include="ExcelDataReader, Version=3.1.0.0, Culture=neutral, PublicKeyToken=93517dbe6a4012fa, processorArchitecture=MSIL">
       <HintPath>..\packages\ExcelDataReader.3.1.0\lib\net45\ExcelDataReader.dll</HintPath>
     </Reference>
@@ -45,7 +39,6 @@
       <HintPath>..\packages\ExcelDataReader.DataSet.3.1.0\lib\net45\ExcelDataReader.DataSet.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -56,23 +49,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataClasses\KyivEnergoRow.cs" />
-    <Compile Include="DataClasses\KyivEnergoFileContetx.cs" />
-    <Compile Include="DataClasses\Manager.cs" />
-    <Compile Include="DataClasses\MyContextInitializer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TMP_DataTable_Printer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Files\Kievenergo012017.xls" />
-    <None Include="Files\Kievenergo022017.xls" />
-    <None Include="Files\Ugh012017.xls" />
-    <None Include="Files\Ugh022017.xls" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ExcelEnergoReaderLibrary\ExcelEnergoReaderLibrary.csproj">

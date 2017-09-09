@@ -5,6 +5,10 @@ VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelMyReader", "ExcelMyReader\ExcelMyReader.csproj", "{42BE8344-87CC-46E6-B714-B7430A7BFCCE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelEnergoReaderLibrary", "ExcelEnergoReaderLibrary\ExcelEnergoReaderLibrary.csproj", "{54B4AE69-D526-41A4-8987-81C7C02EA310}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ATMP_Start", "ATMP_Start\ATMP_Start.csproj", "{1B78BB47-BEA7-489C-B54C-940BAC8D656F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{42BE8344-87CC-46E6-B714-B7430A7BFCCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{42BE8344-87CC-46E6-B714-B7430A7BFCCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{42BE8344-87CC-46E6-B714-B7430A7BFCCE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54B4AE69-D526-41A4-8987-81C7C02EA310}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54B4AE69-D526-41A4-8987-81C7C02EA310}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54B4AE69-D526-41A4-8987-81C7C02EA310}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54B4AE69-D526-41A4-8987-81C7C02EA310}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B78BB47-BEA7-489C-B54C-940BAC8D656F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B78BB47-BEA7-489C-B54C-940BAC8D656F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B78BB47-BEA7-489C-B54C-940BAC8D656F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B78BB47-BEA7-489C-B54C-940BAC8D656F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
