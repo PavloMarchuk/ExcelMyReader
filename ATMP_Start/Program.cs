@@ -18,53 +18,40 @@ namespace ATMP_Start
 		{
 			Console.OutputEncoding = new UTF8Encoding();			
 			string filePath = @"F:\Projects\17. Курсова ExcelReader\ExcelMyReader\ExcelMyReader\Files\Kievenergo012017.xls";
-
+//F:\Projects\17. Курсова ExcelReader\ExcelMyReader\ExcelMyReader\DataClasses\KyivEnergoFileContetx.cs
 			DataTable table = LoadExcelOneTable.Load(filePath);
-			
-			List<KeyValuePair<string, string>> listCol = new List<KeyValuePair<string, string>>()
-			{
-				new KeyValuePair<string, string>("Point", "String"),
-				new KeyValuePair<string, string>("PointName", "String"),
-				new KeyValuePair<string, string>("PointType", "String"),
-				new KeyValuePair<string, string>("Tariff", "Double"),
-				new KeyValuePair<string, string>("Consumption", "Double"),
-				new KeyValuePair<string, string>("Amount", "Double")
-			};
-			TableParamStruct param = new TableParamStruct()
-			{
-				name_ = "TESTMyQuery23",
-				oldTable = table,
-				colonsNamesTypes = listCol,
-				skipHead = 4,
-				skipColumn = 0,
-				skipSignature = 2,
-				countRows = 7
-			};
-			//Base_ExcelEnergoFormater formater = new Base_ExcelEnergoFormater ("КиївЕнерго" ,table, listCol, 4, 0, 2, 10);
-			Base_ExcelEnergoFormater formater = new Base_ExcelEnergoFormater(param);			
+
+			//List<KeyValuePair<string, string>> listCol = new List<KeyValuePair<string, string>>()
+			//{
+			//	new KeyValuePair<string, string>("Point", "String"),
+			//	new KeyValuePair<string, string>("PointName", "String"),
+			//	new KeyValuePair<string, string>("PointType", "String"),
+			//	new KeyValuePair<string, string>("Tariff", "Double"),
+			//	new KeyValuePair<string, string>("Consumption", "Double"),
+			//	new KeyValuePair<string, string>("Amount", "Double")
+			//};
+			//TableParamStruct param = new TableParamStruct()
+			//{
+			//	name_ = "TESTMyQuery23",
+			//	//oldTable = table,
+			//	colonsNamesTypes = listCol,
+			//	skipHead = 4,
+			//	skipColumn = 0,
+			//	skipSignature = 2,
+			//	countRows = 0
+			//};
+			List < TableParamStruct > tablesParamsList = JsonMaker.JsonLoad(@"F:\Projects\17. Курсова ExcelReader\ExcelMyReader\ATMP_Start\data\TableParam.json");			
+
+			Base_ExcelEnergoFormater formater = new Base_ExcelEnergoFormater(tablesParamsList[0], table);			
 			table = formater.shortTable;
-			
-
-			//string sConnectionString = @"data source=(localdb)\MSSQLLocalDB;initial catalog=TMPExcel;integrated security = True; App = CodeFirst";
-			//SqlConnection objConn = new SqlConnection(sConnectionString);
-			//objConn.Open();
-			//SqlDataAdapter adapter = new SqlDataAdapter();
-
 
 			DataSet kyivEnergoDataSet = new DataSet("KyivEnergoDataSet");
-			kyivEnergoDataSet.Tables.Add(table);
-
-			//Update(DataSet)
-			TMP_DataTable_Printer.Print(table);
-
-			Console.WriteLine("\n\n\n\n");
+			kyivEnergoDataSet.Tables.Add(table);				
 
 			string conString = ConfigurationManager.ConnectionStrings["TMPExcel"].ConnectionString;
-			string Messaga = AddingNewTable.Push(conString, table, param);
-
-			table.WriteXmlSchema("XmlSchema.txt");
-
-			Console.WriteLine(Messaga);
+			// тут запихую в базу НЕ ВИТИРАТИ
+			string Messaga = AddingNewTable.Push(conString, table, tablesParamsList[0]);
+			
 			Console.ReadLine();
 		}
 	}

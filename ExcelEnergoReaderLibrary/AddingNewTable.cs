@@ -26,7 +26,7 @@ namespace ExcelEnergoReaderLibrary
 				catch(Exception exc)
 				{
 					connection.Close();
-					resultString = "Таблица не создана";
+					resultString = "Таблица не создана" + exc.Message;
 				}
 				finally { connection.Close(); }
 			}
@@ -36,8 +36,6 @@ namespace ExcelEnergoReaderLibrary
 				bulkCopy.DestinationTableName = oldTable.TableName;
 				bulkCopy.WriteToServer(oldTable);
 			}
-
-
 			return resultString;
 		}
 

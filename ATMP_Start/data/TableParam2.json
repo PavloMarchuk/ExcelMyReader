@@ -1,0 +1,35 @@
+[
+	{
+		"name_": "TESTMyQuery23",
+		"colonsNamesTypes": [
+			{
+				"Key": "Point",
+				"Value": "String"
+			},
+			{
+				"Key": "PointName",
+				"Value": "String"
+			},
+			{
+				"Key": "PointType",
+				"Value": "String"
+			},
+			{
+				"Key": "Tariff",
+				"Value": "Double"
+			},
+			{
+				"Key": "Consumption",
+				"Value": "Double"
+			},
+			{
+				"Key": "Amount",
+				"Value": "Double"
+			}
+		],
+		"skipHead": 4,
+		"skipColumn": 0,
+		"skipSignature": 2,
+		"countRows": 0
+	}
+]

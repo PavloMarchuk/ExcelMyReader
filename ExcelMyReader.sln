@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelEnergoReaderLibrary", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ATMP_Start", "ATMP_Start\ATMP_Start.csproj", "{1B78BB47-BEA7-489C-B54C-940BAC8D656F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelMyReaderWpf", "ExcelMyReaderWpf\ExcelMyReaderWpf.csproj", "{5C9DC298-67BD-4DFA-AFBA-6B9B02FC1F71}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{1B78BB47-BEA7-489C-B54C-940BAC8D656F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1B78BB47-BEA7-489C-B54C-940BAC8D656F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1B78BB47-BEA7-489C-B54C-940BAC8D656F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C9DC298-67BD-4DFA-AFBA-6B9B02FC1F71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C9DC298-67BD-4DFA-AFBA-6B9B02FC1F71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C9DC298-67BD-4DFA-AFBA-6B9B02FC1F71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C9DC298-67BD-4DFA-AFBA-6B9B02FC1F71}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
