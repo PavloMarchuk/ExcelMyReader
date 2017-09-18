@@ -21,32 +21,30 @@ namespace ATMP_Start
 //F:\Projects\17. Курсова ExcelReader\ExcelMyReader\ExcelMyReader\DataClasses\KyivEnergoFileContetx.cs
 			DataTable table = LoadExcelOneTable.Load(filePath);
 
-			//List<KeyValuePair<string, string>> listCol = new List<KeyValuePair<string, string>>()
-			//{
-			//	new KeyValuePair<string, string>("Point", "String"),
-			//	new KeyValuePair<string, string>("PointName", "String"),
-			//	new KeyValuePair<string, string>("PointType", "String"),
-			//	new KeyValuePair<string, string>("Tariff", "Double"),
-			//	new KeyValuePair<string, string>("Consumption", "Double"),
-			//	new KeyValuePair<string, string>("Amount", "Double")
-			//};
-			//TableParamStruct param = new TableParamStruct()
-			//{
-			//	name_ = "TESTMyQuery23",
-			//	//oldTable = table,
-			//	colonsNamesTypes = listCol,
-			//	skipHead = 4,
-			//	skipColumn = 0,
-			//	skipSignature = 2,
-			//	countRows = 0
-			//};
+			List<KeyValuePair<string, string>> listCol = new List<KeyValuePair<string, string>>()
+			{
+				new KeyValuePair<string, string>("Point", "String"),
+				new KeyValuePair<string, string>("PointName", "String"),
+				new KeyValuePair<string, string>("PointType", "String"),
+				new KeyValuePair<string, string>("Tariff", "Double"),
+				new KeyValuePair<string, string>("Consumption", "Double"),
+				new KeyValuePair<string, string>("Amount", "Double")
+			};
+			TableParamStruct param = new TableParamStruct()
+			{
+				name_ = "TESTMyQuery23",
+				colonsNamesTypes = listCol,
+				skipHead = 4,
+				skipColumn = 0,
+				skipSignature = 2,
+				countRows = 0,
+				listIndex = 0
+			};
 			List < TableParamStruct > tablesParamsList = JsonMaker.JsonLoad(@"F:\Projects\17. Курсова ExcelReader\ExcelMyReader\ATMP_Start\data\TableParam.json");			
 
 			Base_ExcelEnergoFormater formater = new Base_ExcelEnergoFormater(tablesParamsList[0], table);			
 			table = formater.shortTable;
-
-			DataSet kyivEnergoDataSet = new DataSet("KyivEnergoDataSet");
-			kyivEnergoDataSet.Tables.Add(table);				
+					
 
 			string conString = ConfigurationManager.ConnectionStrings["TMPExcel"].ConnectionString;
 			// тут запихую в базу НЕ ВИТИРАТИ

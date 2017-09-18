@@ -13,8 +13,16 @@ namespace ExcelEnergoReaderLibrary
 		public static string JsonSave( List<TableParamStruct> paramList)
 		{
 			string jsonString = JsonConvert.SerializeObject(paramList);
-			System.Console.Write(jsonString);
+			//System.Console.Write(jsonString);
 			string path = "TableParam2.json";			
+			File.WriteAllText(path, jsonString);
+			return "successfully";
+		}
+		public static string JsonSave(List<TableParamStruct> paramList, string path )
+		{
+			string jsonString = JsonConvert.SerializeObject(paramList);
+			//System.Console.Write(jsonString);
+			//string path = "TableParam2.json";
 			File.WriteAllText(path, jsonString);
 			return "successfully";
 		}

@@ -2,6 +2,8 @@
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,49 +16,45 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+//using System.Windows.Forms;
+
 
 namespace ExcelMyReaderWpf
 {
-	/// <summary>
-	/// Interaction logic for MainWindow.xaml
-	/// </summary>
 	public partial class MainWindow : Window
 	{
 		public List<TableParamStruct> ParamList { get; set; }
+		public ObservableCollection<TableParamStruct> ParamObs { get; set; }
 		public MainWindow()
 		{
 			InitializeComponent();
-			ParamList = JsonMaker.JsonLoad(@"data\TableParam.json");
-
-
-			//this.Resources = new ResourceDictionary() { Source = new Uri("pack://application:,,,/Dictionary1.xaml") };
-			
-			//this.Resources.Add("paramListWPF", ParamList);
-			
-			//cbTypes.Items.Add(ParamList[0].name_);
-			
-			//cbTypes.SelectedIndex = 0;
-			//cbTypes.DataSource = 
-			//foreach (TableParamStruct item in ParamList)
-			//{
-			//	cbTypes.Items.Add(item);
-			//	cbTypes.Items.
-			//}
-			//cbTypes.DataContext = paramList;
-			//DataContext="{Binding ElementName=paramListWPF, Path=name_}"
+			ParamList = JsonMaker.JsonLoad(@"data\TableParam.json");			
+			//JsonMaker.JsonSave(ParamList, @"data\TableParam.json");
+			ParamObs = new ObservableCollection<TableParamStruct>(ParamList);
+			cbTypes.ItemsSource = ParamObs;
+			if (cbTypes.Items.Count>0)
+			{
+				cbTypes.SelectedIndex = 0;
+			}			
 		}
 
 		private void Button_Click(object sender, RoutedEventArgs e)
 		{
-			OpenFileDialog openFileDialog = new OpenFileDialog();
+			Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog();
 			
 			openFileDialog.Filter = "Excel files (*.xls, *.xlsx)|*.xls; *.xlsx"; //|All files (*.*)|*.*
 			openFileDialog.RestoreDirectory = true;
 			if (openFileDialog.ShowDialog() == true)
 			{
-				tmpLabel.Content = openFileDialog.FileName;
+				string conString = ConfigurationManager.ConnectionStrings["TMPExcel"].ConnectionString;
+
+				string Messaga = AddingNewTable.PushFromPath(conString, openFileDialog.FileName, (TableParamStruct)cbTypes.SelectedItem);
+
+				System.Windows.MessageBox.Show(Messaga);
+				JsonMaker.JsonSave(ParamList, @"data\TableParam.json");
+
 			}
-				//txtEditor.Text = File.ReadAllText(openFileDialog.FileName);			
+						
 		}
 	}
 }

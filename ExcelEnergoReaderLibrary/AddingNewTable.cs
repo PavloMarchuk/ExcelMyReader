@@ -10,6 +10,17 @@ namespace ExcelEnergoReaderLibrary
 {
 	public static class AddingNewTable
 	{
+		public static string PushFromPath(string connectionString, string path, TableParamStruct param)
+		{
+			DataTable oldTable = LoadExcelOneTable.Load(path, param.listIndex);
+			return PushUnformatted( connectionString, oldTable, param);
+		}
+		public static string PushUnformatted(string connectionString, DataTable oldTable, TableParamStruct param)
+		{			
+			Base_ExcelEnergoFormater formater = new Base_ExcelEnergoFormater(param, oldTable);
+			DataTable table = formater.shortTable;
+			return Push(connectionString, table, param);
+		}
 		public static string Push(string connectionString, DataTable oldTable, TableParamStruct param)
 		{
 			string resultString = "Успішно додано";				
@@ -44,7 +55,7 @@ namespace ExcelEnergoReaderLibrary
 			//створення шапки SQL запиту
 			StringBuilder query = new StringBuilder
 				(
-				$"IF OBJECT_ID('{oldTable.TableName}', 'U') IS NULL BEGIN CREATE TABLE dbo.{oldTable.TableName}  ( Id int not null IDENTITY(1, 1) primary key"
+				$"IF OBJECT_ID('{param.name_}', 'U') IS NULL BEGIN CREATE TABLE dbo.{param.name_}  ( Id int not null IDENTITY(1, 1) primary key"
 				);			
 
 			// додавання колонок SQL таблиці
@@ -90,45 +101,46 @@ namespace ExcelEnergoReaderLibrary
 		}
 	}
 }
-class MyClass
-{
-	public void createsqltable(DataTable dt, string tablename)
-	{
-		string strconnection = "";
-		string table = "";
-		table += "IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[" + tablename + "]') AND type in (N'U'))";
-		table += "BEGIN ";
-		table += "create table " + tablename + "";
-		table += "(";
-		for (int i = 0; i < dt.Columns.Count; i++)
-		{
-			if (i != dt.Columns.Count - 1)
-				table += dt.Columns[i].ColumnName + " " + "varchar(max)" + ",";
-			else
-				table += dt.Columns[i].ColumnName + " " + "varchar(max)";
-		}
-		table += ") ";
-		table += "END";
-		InsertQuery(table, strconnection);
-		CopyData(strconnection, dt, tablename);
-	}
-	public void InsertQuery(string qry, string connection)
-	{
-		SqlConnection _connection = new SqlConnection(connection);
-		SqlCommand cmd = new SqlCommand();
-		cmd.CommandType = CommandType.Text;
-		cmd.CommandText = qry;
-		cmd.Connection = _connection;
-		_connection.Open();
-		cmd.ExecuteNonQuery();
-		_connection.Close();
-	}
-	public static void CopyData(string connStr, DataTable dt, string tablename)
-	{
-		using (SqlBulkCopy bulkCopy = new SqlBulkCopy(connStr, SqlBulkCopyOptions.TableLock))
-		{
-			bulkCopy.DestinationTableName = tablename;
-			bulkCopy.WriteToServer(dt);
-		}
-	}
-}
+
+//class MyClass
+//{
+//	public void createsqltable(DataTable dt, string tablename)
+//	{
+//		string strconnection = "";
+//		string table = "";
+//		table += "IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[" + tablename + "]') AND type in (N'U'))";
+//		table += "BEGIN ";
+//		table += "create table " + tablename + "";
+//		table += "(";
+//		for (int i = 0; i < dt.Columns.Count; i++)
+//		{
+//			if (i != dt.Columns.Count - 1)
+//				table += dt.Columns[i].ColumnName + " " + "varchar(max)" + ",";
+//			else
+//				table += dt.Columns[i].ColumnName + " " + "varchar(max)";
+//		}
+//		table += ") ";
+//		table += "END";
+//		InsertQuery(table, strconnection);
+//		CopyData(strconnection, dt, tablename);
+//	}
+//	public void InsertQuery(string qry, string connection)
+//	{
+//		SqlConnection _connection = new SqlConnection(connection);
+//		SqlCommand cmd = new SqlCommand();
+//		cmd.CommandType = CommandType.Text;
+//		cmd.CommandText = qry;
+//		cmd.Connection = _connection;
+//		_connection.Open();
+//		cmd.ExecuteNonQuery();
+//		_connection.Close();
+//	}
+//	public static void CopyData(string connStr, DataTable dt, string tablename)
+//	{
+//		using (SqlBulkCopy bulkCopy = new SqlBulkCopy(connStr, SqlBulkCopyOptions.TableLock))
+//		{
+//			bulkCopy.DestinationTableName = tablename;
+//			bulkCopy.WriteToServer(dt);
+//		}
+//	}
+//}

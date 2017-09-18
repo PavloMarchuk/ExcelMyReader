@@ -34,7 +34,8 @@ namespace ExcelEnergoReaderLibrary
 					oldTable.Rows.RemoveAt(oldTable.Rows.Count - 1);
 				}
 			//врахування <роздрукувати всі>
-			if (param.countRows == 0) param.countRows = (oldTable.Rows.Count);
+			int paramCountRows = 0;
+			if (param.countRows == 0) paramCountRows = (oldTable.Rows.Count);
 
 
 			//заповнення нової таблиці потрібними колонками
@@ -56,7 +57,7 @@ namespace ExcelEnergoReaderLibrary
 			}
 
 			//заповнення рядків комірками потрбіних типів даних
-			for (int i = 0; i < param.countRows; i++)
+			for (int i = 0; i < paramCountRows; i++)
 			{
 					DataRow newRow = shortTable.NewRow();
 					DataRow oldRow = oldTable.Rows[i];

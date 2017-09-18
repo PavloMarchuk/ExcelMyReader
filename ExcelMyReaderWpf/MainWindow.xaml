@@ -13,28 +13,36 @@
 			<RowDefinition Height="auto"/>
 			<RowDefinition Height="auto"/>
 			<RowDefinition Height="auto"/>
-		</Grid.RowDefinitions>
-		
+		</Grid.RowDefinitions>		
 		<Grid.Background>
 				<ImageBrush ImageSource="img\fon.jpeg"></ImageBrush>
 		</Grid.Background>
 
 		<WrapPanel>
-			<ComboBox Name="cbTypes" Width="170" Margin="10" DataContext="StaticResource paramListWPF"> 			
+			<ComboBox Name="cbTypes" Width="400" Margin="10">
+				<ComboBox.ItemTemplate>
+					<DataTemplate>
+						<WrapPanel>
+						<Image Height="24" Width="24" Source="img\Excel_ico.png" />
+							<TextBlock FontSize="24" Text="{Binding Path=name_}" />
+						</WrapPanel>
+					</DataTemplate>
+				</ComboBox.ItemTemplate>
 			</ComboBox>
+			
+			
 			<Button   Margin="10" Click="Button_Click">UpLoad table</Button>
 			<Button Margin="10">Add new table type</Button>			
 		</WrapPanel >
 		<WrapPanel Grid.Row="1">
 			<DataGrid Name="dgv" Margin="10" Height="300" Width="400"/>
 		</WrapPanel>
-		<Label Grid.Row="2" Name="tmpLabel" Content="">
-			
-		</Label>
+		
 
-		<TextBlock Grid.Row="3">TextBlock</TextBlock>
-		<TextBox Grid.Row="4">TextBox</TextBox>
+		
 
 
 	</Grid>
 </Window>
+ <!--DataContext="StaticResource paramListWPF"-->
+
