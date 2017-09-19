@@ -43,8 +43,7 @@ namespace ATMP_Start
 			//List < TableParamStruct > tablesParamsList = JsonMaker.JsonLoad(@"F:\Projects\17. Курсова ExcelReader\ExcelMyReader\ATMP_Start\data\TableParam.json");			
 
 			//Base_ExcelEnergoFormater formater = new Base_ExcelEnergoFormater(tablesParamsList[0], table);			
-			//table = formater.shortTable;
-					
+			//table = formater.shortTable;				
 
 			//string conString = ConfigurationManager.ConnectionStrings["TMPExcel"].ConnectionString;
 			//// тут запихую в базу НЕ ВИТИРАТИ
