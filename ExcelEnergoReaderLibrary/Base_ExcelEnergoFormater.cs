@@ -11,22 +11,21 @@ namespace ExcelEnergoReaderLibrary
 {
 	public class Base_ExcelEnergoFormater
 	{
-		DataTable oldTable;
+		//DataTable oldTable;
 
 		public DataTable shortTable{get; set; }
 
 		//public Base_ExcelEnergoFormater(){}
 		//workTable.Columns.Add("CustFName", Type.GetType("System.String"))  
 		//workTable.Columns.Add("Purchases", Type.GetType("System.Double"))  
+
 		public Base_ExcelEnergoFormater(TableParamStruct param, DataTable oldTable)
 		{
-			
-
 			//видалення шапки
 			for (int i = 0; i < param.skipHead; i++)
-				{
-					oldTable.Rows.RemoveAt(0);
-				}
+			{
+				oldTable.Rows.RemoveAt(0);
+			}
 
 				// видалення підпису під таблицею
 				for (int i = 0; i < param.skipSignature; i++)

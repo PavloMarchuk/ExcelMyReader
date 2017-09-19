@@ -12,8 +12,15 @@ namespace ExcelEnergoReaderLibrary
 	{
 		public static string PushFromPath(string connectionString, string path, TableParamStruct param)
 		{
-			DataTable oldTable = LoadExcelOneTable.Load(path, param.listIndex);
-			return PushUnformatted( connectionString, oldTable, param);
+			try
+			{
+				DataTable oldTable = LoadExcelOneTable.Load(path, param.listIndex);
+				return PushUnformatted(connectionString, oldTable, param);
+			}
+			catch (Exception ex)
+			{
+				throw new Exception(ex.Message);
+			}			
 		}
 		public static string PushUnformatted(string connectionString, DataTable oldTable, TableParamStruct param)
 		{			
@@ -21,12 +28,12 @@ namespace ExcelEnergoReaderLibrary
 			DataTable table = formater.shortTable;
 			return Push(connectionString, table, param);
 		}
-		public static string Push(string connectionString, DataTable oldTable, TableParamStruct param)
+		public static string Push(string connectionString, DataTable formatedTable, TableParamStruct param)
 		{
 			string resultString = "Успішно додано";				
 			using (SqlConnection connection = new SqlConnection(connectionString))
 			{
-				string query = GetQueryString(oldTable, param);
+				string query = GetQueryString(formatedTable, param);
 
 				SqlCommand sqlCom = new SqlCommand(query, connection);
 				try
@@ -44,8 +51,8 @@ namespace ExcelEnergoReaderLibrary
 
 			using (SqlBulkCopy bulkCopy = new SqlBulkCopy(connectionString, SqlBulkCopyOptions.TableLock))
 			{
-				bulkCopy.DestinationTableName = oldTable.TableName;
-				bulkCopy.WriteToServer(oldTable);
+				bulkCopy.DestinationTableName = formatedTable.TableName;
+				bulkCopy.WriteToServer(formatedTable);
 			}
 			return resultString;
 		}

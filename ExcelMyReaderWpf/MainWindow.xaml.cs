@@ -1,4 +1,5 @@
-﻿using ExcelEnergoReaderLibrary;
+﻿using eisiWare;
+using ExcelEnergoReaderLibrary;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -35,7 +36,8 @@ namespace ExcelMyReaderWpf
 			if (cbTypes.Items.Count>0)
 			{
 				cbTypes.SelectedIndex = 0;
-			}			
+			}
+			NumericUpDown nm = new NumericUpDown();
 		}
 
 		private void Button_Click(object sender, RoutedEventArgs e)
@@ -48,13 +50,33 @@ namespace ExcelMyReaderWpf
 			{
 				string conString = ConfigurationManager.ConnectionStrings["TMPExcel"].ConnectionString;
 
-				string Messaga = AddingNewTable.PushFromPath(conString, openFileDialog.FileName, (TableParamStruct)cbTypes.SelectedItem);
+				try
+				{
+					string Messaga = AddingNewTable.PushFromPath(conString, openFileDialog.FileName, (TableParamStruct)cbTypes.SelectedItem);
+					System.Windows.MessageBox.Show(Messaga);
+				}
+				catch (Exception ex)
+				{
 
-				System.Windows.MessageBox.Show(Messaga);
-				JsonMaker.JsonSave(ParamList, @"data\TableParam.json");
+					System.Windows.MessageBox.Show(ex.Message, "Перехоплено помилку:", MessageBoxButton.OK, MessageBoxImage.Error);
+				}
+
+
+				
+
+				
+				//JsonMaker.JsonSave(ParamList, @"data\TableParam.json");
 
 			}
 						
+		}
+
+		private void Button_Click_1(object sender, RoutedEventArgs e)
+		{
+			AddNewTypeWindow addW = new AddNewTypeWindow();
+			addW.ShowDialog();
+
+
 		}
 	}
 }
